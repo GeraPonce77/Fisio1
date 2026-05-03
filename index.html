@@ -11,8 +11,40 @@
     <h1>FISIOLINE</h1>
     <!--Eslogan-->
     <p>Bienvenido!</p>
+
     <!--Botón para agendar una cita-->
+
+    <button onclick="mostrarFormulario()">Agendar cita</button>
+    <div id="formularioCita" style="display:none;">
+        <h2>Agendar cita</h2>
+        <form>
+            <!--Nombre-->
+            <label for="nombre">Nombre:</label><br>
+            <input type="text" id="nombre" name="nombre" placeholder="Ingrese su nombre"><br><br>
+
+            <!--Correo electrónico-->
+            <label for="correo">Correo electrónico:</label>
+            <input type="email" id="correo" name="correo" placeholder="Ingrese su email"><br><br>
+
+            <!--Teléfono-->
+            <label for="telefono">Teléfono:</label>
+            <input type="tel" id="telefono" name="telefono" placeholder="1234567890"><br><br>
+
+            <!--Fecha-->
+            <label for="fecha">Fecha:</label>
+            <input type="date" id="fecha" name="fecha"><br><br>
+
+            <!--Hora-->
+            <label for="hora">Hora:</label>
+            <input type="time" id="hora" name="hora"><br><br>
+
+            <!--Botón de envío-->
+            <button type="submit">Confirmar cita</button>
+        </form>
+
     <input type="button" value="Servicios">
+
+    
     <!--Terapias-->
     <!--com5-->
     <!--com6-->
@@ -21,6 +53,6 @@
     <!--com9-->
     <!--com10-->
     <!--com11-->
-    
+
 </body>
 </html>

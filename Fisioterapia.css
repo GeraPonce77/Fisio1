@@ -1,0 +1,153 @@
+*{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: linear-gradient(145deg, #eef5f0 0%, #e0f0e8 100%);
+            color: #1a2e3f;
+            scroll-behavior: smooth;
+            transition: background 0.3s, color 0.2s;
+        }
+
+        /* Modo oscuro */
+        body.dark-mode {
+            background: #121b17;
+            color: #e0f0e8;
+        }
+        body.dark-mode .top-section, body.dark-mode .card, body.dark-mode .service-options, body.dark-mode .testimonial-card, body.dark-mode .faq-item, body.dark-mode .blog-card, body.dark-mode .contacto-panel {
+            background: #1e2a25;
+            color: #eef3ef;
+            border-color: #2d6b54;
+        }
+        body.dark-mode .input-group input, body.dark-mode textarea {
+            background: #2c3c35;
+            color: white;
+            border-color: #407b64;
+        }
+        body.dark-mode .tagline, body.dark-mode .business-name p, body.dark-mode .footer-note {
+            color: #bdd9cf;
+        }
+        .dark-mode-toggle {
+            background: #2c7a5e;
+            border: none;
+            border-radius: 30px;
+            padding: 6px 12px;
+            cursor: pointer;
+            font-weight: bold;
+            color: white;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1.5rem 2rem;
+        }
+
+        /* Secciones generales */
+        .section-title {
+            font-size: 1.8rem;
+            margin: 2rem 0 1rem;
+            color: #146b51;
+            border-left: 5px solid #2c9d78;
+            padding-left: 1rem;
+        }
+        body.dark-mode .section-title { color: #6fc3a4; }
+
+        .terapeutas-grid, .testimonios-grid, .blog-grid, .servicios-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.8rem;
+            justify-content: center;
+            margin: 1.5rem 0;
+        }
+        .card-terapeuta, .testimonial-card, .blog-card, .servicio-card {
+            background: white;
+            border-radius: 1.5rem;
+            padding: 1.2rem;
+            flex: 1;
+            min-width: 180px;
+            box-shadow: 0 5px 12px rgba(0,0,0,0.05);
+            text-align: center;
+            transition: transform 0.2s;
+        }
+        .card-terapeuta img { width: 100px; height: 100px; border-radius: 50%; object-fit: cover; background: #c5e0d5; }
+
+        /* FAQ */
+        .faq-item {
+            background: white;
+            border-radius: 1rem;
+            margin-bottom: 1rem;
+            padding: 0.8rem 1.2rem;
+            cursor: pointer;
+        }
+        .faq-question {
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+        }
+        .faq-answer {
+            display: none;
+            padding-top: 0.5rem;
+            color: #2d5a48;
+        }
+        .faq-item.active .faq-answer { display: block; }
+
+        /* Botón WhatsApp flotante */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #25D366;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            z-index: 1000;
+            transition: 0.2s;
+        }
+        .whatsapp-float:hover { transform: scale(1.05); }
+        .whatsapp-float img { width: 38px; }
+
+        /* Calendario visual simple */
+        .calendar-mini {
+            background: #eef4f0;
+            border-radius: 1rem;
+            padding: 1rem;
+            margin-top: 1rem;
+        }
+        .calendar-days {
+            display: grid;
+            grid-template-columns: repeat(7,1fr);
+            gap: 5px;
+        }
+        .cal-day {
+            text-align: center;
+            padding: 8px;
+            border-radius: 30px;
+            background: white;
+            cursor: pointer;
+        }
+        .cal-day.selected {
+            background: #1f8a64;
+            color: white;
+        }
+
+        /* Mapa */
+        .map-container iframe {
+            width: 100%;
+            border-radius: 1rem;
+            height: 280px;
+        }
+
+        .btn-pago { background: #2c7a5e; color: white; padding: 0.4rem 1rem; border-radius: 30px; display: inline-block; margin: 0.2rem;}
+
+        .fade-scroll { opacity: 0; transform: translateY(20px); transition: all 0.6s ease; }
+        .fade-scroll.visible { opacity: 1; transform: translateY(0); }
+
+        @media (max-width: 750px) { .container { padding: 1rem; } }

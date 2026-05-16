@@ -1,9 +1,4 @@
 /* ============================================================
- * LANDING PAGE - LALO Y GERA FISIOTERAPIA
- * Programación Orientada a Objetos: Clase Carrito
- * Formulario con validación y eventos
- * ============================================================ */
-/* ============================================================
  * MODO OSCURO - Persistente en TODAS las páginas
  * ============================================================ */
 
@@ -52,7 +47,12 @@ document.addEventListener('DOMContentLoaded', function() {
     aplicarModoOscuro();
     inicializarBotonModoOscuro();
 });
-// ========== CLASE CARRITO (POO) ==========
+
+/* ============================================================
+ * LANDING PAGE - LALO Y GERA FISIOTERAPIA
+ * Programación Orientada a Objetos: Clase Carrito
+ * ============================================================ */
+
 class Carrito {
     constructor() {
         this.items = this.cargarDeLocalStorage();
@@ -89,7 +89,7 @@ class Carrito {
         this.mostrarNotificacion(`🗑️ Producto eliminado del carrito`);
     }
 
-        actualizarContador() {
+    actualizarContador() {
         const cartCount = document.getElementById('cartCount');
         if (cartCount) {
             const totalItems = this.items.reduce((sum, item) => sum + item.cantidad, 0);
@@ -99,8 +99,8 @@ class Carrito {
 
     mostrarNotificacion(mensaje) {
         console.log(mensaje);
-        // Opcional: mostrar notificación visual
     }
+}
 
-    // ========== INICIALIZAR CARRITO ==========
+// Inicializar carrito
 const carrito = new Carrito();

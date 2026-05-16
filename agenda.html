@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lalo y Gera | Fisioterapia - Agenda tu cita</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -35,45 +35,41 @@
     <main>
         <div class="appointment-card">
             <div class="header">
-                <h1>📅 Agenda tu cita</h1>
+                <h1>Agenda tu cita</h1>
                 <p>Completa tus datos y elige día y hora disponible</p>
             </div>
             <div class="form-container">
-                <form id="appointmentForm" novalidate>
+                <form id="appointmentForm">
                     <div class="form-group">
                         <label><i class="fas fa-user"></i> Nombre completo</label>
                         <input type="text" id="fullName" placeholder="Ej: Ana María Pérez">
+                        <div id="nameError" class="error-msg"></div>
                     </div>
 
                     <div class="form-group">
                         <label><i class="fas fa-envelope"></i> Correo electrónico</label>
                         <input type="email" id="email" placeholder="tucorreo@ejemplo.com">
+                        <div id="emailError" class="error-msg"></div>
                     </div>
 
                     <div class="form-group">
-                        <label><i class="fas fa-phone"></i> Número telefónico</label>
+                        <label><i class="fas fa-phone"></i> Número Celular</label>
                         <input type="tel" id="phone" placeholder="Ej: 5551234567">
+                        <div id="phoneError" class="error-msg"></div>
                     </div>
 
                     <div class="row-2cols">
                         <div class="form-group">
                             <label><i class="fas fa-calendar"></i> Fecha</label>
                             <input type="date" id="appointmentDate">
+                            <div id="dateError" class="error-msg"></div>
                         </div>
                         <div class="form-group">
-                            <label><i class="fas fa-clock"></i> Horario (9:00 - 19:00)</label>
+                            <label><i class="fas fa-clock"></i> Horario (9:00 - 17:00)</label>
                             <select id="appointmentTime">
                                 <option value="">-- Selecciona hora --</option>
-                                <option value="09:00">09:00</option>
-                                <option value="10:00">10:00</option>
-                                <option value="11:00">11:00</option>
-                                <option value="12:00">12:00</option>
-                                <option value="13:00">13:00</option>
-                                <option value="14:00">14:00</option>
-                                <option value="15:00">15:00</option>
-                                <option value="16:00">16:00</option>
-                                <option value="17:00">17:00</option>
                             </select>
+                            <div id="timeError" class="error-msg"></div>
                         </div>
                     </div>
 
@@ -81,8 +77,8 @@
 
                     <div class="horario-info">
                         <span>Horario de atención:</span>
-                        <span>Lunes a Domingo • 9:00 AM - 7:00 PM</span>
-                        <span>(última cita 18:30 para inicio puntual)</span>
+                        <span>Lunes a Domingo • 9:00 AM - 5:00 PM</span>
+                        <span>(última cita 16:00 para inicio puntual)</span>
                     </div>
                 </form>
             </div>
@@ -99,5 +95,7 @@
     <a href="https://wa.me/521234567890?text=Hola%2C%20quiero%20agendar%20una%20cita" class="whatsapp-float" target="_blank">
         <i class="fab fa-whatsapp"></i>
     </a>
+
+    <script src="script.js"></script>
 </body>
 </html>

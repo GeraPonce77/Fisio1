@@ -88,3 +88,16 @@ class Carrito {
         this.actualizarContador();
         this.mostrarNotificacion(`🗑️ Producto eliminado del carrito`);
     }
+
+        actualizarContador() {
+        const cartCount = document.getElementById('cartCount');
+        if (cartCount) {
+            const totalItems = this.items.reduce((sum, item) => sum + item.cantidad, 0);
+            cartCount.textContent = totalItems;
+        }
+    }
+
+    mostrarNotificacion(mensaje) {
+        console.log(mensaje);
+        // Opcional: mostrar notificación visual
+    }

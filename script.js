@@ -34,4 +34,9 @@ class Carrito {
         return true;
     }
 
-    elim
+    eliminarItem(id) {
+        this.items = this.items.filter(item => item.id !== id);
+        this.guardarEnLocalStorage();
+        this.actualizarContador();
+        this.mostrarNotificacion(`🗑️ Producto eliminado del carrito`);
+    }

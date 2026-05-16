@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Clientes Satisfechos | Generador con RandomUser</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, 'Segoe UI', 'Roboto', 'Helvetica Neue', sans-serif;
+            background: linear-gradient(145deg, #f6f9fc 0%, #eef2f7 100%);
+            padding: 2rem 1.5rem;
+            color: #1a2c3e;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* Encabezado */
+        .header-section {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .header-section h1 {
+            font-size: 2.5rem;
+            background: linear-gradient(135deg, #1f4e6e, #2a9d8f);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            letter-spacing: -0.5px;
+            margin-bottom: 0.5rem;
+        }
+
+        .header-section p {
+            font-size: 1.2rem;
+            color: #4a627a;
+            max-width: 650px;
+            margin: 0 auto;
+        }
+
+        /* Botón de acción */
+        .button-group {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-bottom: 3rem;
+        }
+
+        .btn-generate {
+            background: #2c7da0;
+            border: none;
+            padding: 0.9rem 2rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: white;
+            border-radius: 60px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 6px 14px rgba(44, 125, 160, 0.25);
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-generate:hover {
+            background: #1f5e7a;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .btn-generate:active {
+            transform: translateY(1px);
+        }
+
+        /* Grid de tarjetas */
+        .clientes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-top: 1rem;
+        }
+
+        /* Tarjeta individual */
+        .tarjeta-cliente {
+            background: white;
+            border-radius: 32px;
+            overflow: hidden;
+            transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            box-shadow: 0 12px 24px -8px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(0px);
+            border: 1px solid rgba(255,255,255,0.5);
+        }
+
+        .tarjeta-cliente:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 28px 32px -12px rgba(0, 0, 0, 0.2);
+        }
+
+        .cliente-imagen {
+            background: #e9ecef;
+            display: flex;
+            justify-content: center;
+            padding: 2rem 0 1rem 0;
+        }
+
+        .cliente-imagen img {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid white;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            background: white;
+        }
+
+        .cliente-info {
+            padding: 1.5rem 1.5rem 1rem;
+            text-align: center;
+        }
+
+        .cliente-nombre {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #1f3b4c;
+            margin-bottom: 0.25rem;
+        }
+
+        .cliente-ubicacion {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: #eef2f7;
+            padding: 0.3rem 1rem;
+            border-radius: 40px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: #2c7da0;
+            margin-bottom: 1rem;
+        }
+
+        .cliente-ubicacion span:first-child {
+            font-size: 1rem;
+        }
+
+        .reseña {
+            background: #f8fafd;
+            padding: 1.2rem;
+            border-radius: 24px;
+            margin: 0.8rem 1.2rem 1.5rem 1.2rem;
+            font-style: normal;
+            color: #2c3e4e;
+            position: relative;
+            border-left: 4px solid #2a9d8f;
+            text-align: left;
+            font-size: 0.95rem;
+            line-height: 1.45;
+            box-shadow: inset 0 0 0 1px rgba(0,0,0,0.02), 0 2px 6px rgba(0,0,0,0.02);
+        }
+
+        .reseña i {
+            color: #2a9d8f;
+            font-size: 1.2rem;
+            opacity: 0.8;
+            margin-right: 4px;
+        }
+
+        .badge-random {
+            display: inline-block;
+            background: #e9ecef;
+            font-size: 0.7rem;
+            padding: 0.2rem 0.8rem;
+            border-radius: 30px;
+            color: #5f7f9e;
+            margin-top: 8px;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 3.5rem;
+            font-size: 0.8rem;
+            color: #6b8aac;
+            border-top: 1px solid #cbdde9;
+            padding-top: 2rem;
+        }
+
+        .loader {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 0.6s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        @media (max-width: 700px) {
+            body {
+                padding: 1.2rem;
+            }
+            .header-section h1 {
+                font-size: 1.9rem;
+            }
+            .clientes-grid {
+                gap: 1.3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header-section">
+        <h1>Conoce a nuestros clientes</h1>
+        <p>Gente real que confía en nosotros. Cada vez que presiones el botón, aparecerán nuevos perfiles aleatorios con reseñas auténticas.</p>
+    </div>
+    <div class="button-group">
+        <button class="btn-generate" id="btnGenerarClientes">
+            <span></span> Generar nuevos clientes
+        </button>
+        <button class="btn-generate" id="btnAgregarCliente" style="background:#3b8b6e; box-shadow: 0 6px 14px rgba(59,139,110,0.3);">
+            <span></span> Añadir un cliente más
+        </button>
+    </div>
+
+    <div id="clientesContainer" class="clientes-grid">
+        <!-- Aquí se inyectarán las tarjetas de clientes de forma dinámica -->
+        <div style="grid-column:1/-1; text-align:center; padding:3rem;">Cargando primeros clientes... </div>
+    </div>
+    <footer>
+        🎲 Powered by <strong>Random User Generator API</strong> — perfiles aleatorios con fotos realistas y reseñas simuladas
+    </footer>
+</div>
+
+<script>
+    // ---------- Banco de reseñas (simuladas pero variadas) ----------
+    const RESENNAS = [
+        "¡Atención impecable! Resolvieron mi duda en minutos, volveré a comprar sin dudarlo.",
+        "Calidad y confianza. Superaron mis expectativas, 100% recomendable.",
+        "El equipo más profesional que he conocido. Siempre atentos y rápidos.",
+        "Increíble experiencia. Producto de primera y un trato cercano.",
+        "Me encanta la transparencia. Sin sorpresas, todo perfecto.",
+        "Recomiendo sin dudar. Han mejorado mi día a día con su servicio.",
+        "Atención al cliente de 10. Resuelven rápido y con buena onda.",
+        "Llevo años colaborando con ellos, nunca me han fallado. ¡Fiel cliente!",
+        "La mejor decisión que tomé. Cumplen todo lo que prometen.",
+        "Muy contento con el resultado. Profesionales y honestos."
+    ];
+
+    // Función para seleccionar reseña aleatoria
+    function obtenerResennaAleatoria() {
+        return RESENNAS[Math.floor(Math.random() * RESENNAS.length)];
+    }
+
+    // Función para obtener datos de randomuser.me (promesa)
+    async function obtenerUsuarioRandom() {
+        try {
+            const respuesta = await fetch('https://randomuser.me/api/');
+            if (!respuesta.ok) throw new Error(`HTTP error! status: ${respuesta.status}`);
+            const datos = await respuesta.json();
+            return datos.results[0];  // devuelve el primer usuario
+        } catch (error) {
+            console.error('Error al obtener usuario:', error);
+            // fallback local por si falla la API
+            return {
+                name: { first: "Demo", last: "Cliente" },
+                picture: { large: "https://randomuser.me/api/portraits/men/1.jpg", medium: "https://randomuser.me/api/portraits/med/men/1.jpg", thumbnail: "https://randomuser.me/api/portraits/thumb/men/1.jpg" },
+                location: { city: "Demo City", country: "Ejemplo" },
+                login: { uuid: "fallback-" + Date.now() }
+            };
+        }
+    }
+
+    // Función para construir tarjeta HTML a partir del objeto usuario
+    function crearTarjetaCliente(usuario, reseñaPersonalizada = null) {
+        const nombreCompleto = `${usuario.name.first} ${usuario.name.last}`;
+        const ciudad = usuario.location.city;
+        const pais = usuario.location.country;
+        const foto = usuario.picture.large || usuario.picture.medium;
+        const reseña = reseñaPersonalizada !== null ? reseñaPersonalizada : obtenerResennaAleatoria();
+        // ID único para posibles operaciones (no necesario para grid pero podemos guardar)
+        const userId = usuario.login?.uuid || `id-${Date.now()}-${Math.random()}`;
+
+        // Construimos el elemento div de la tarjeta
+        const tarjetaDiv = document.createElement('div');
+        tarjetaDiv.className = 'tarjeta-cliente';
+        tarjetaDiv.setAttribute('data-id', userId);
+
+        tarjetaDiv.innerHTML = `
+            <div class="cliente-imagen">
+                <img src="${foto}" alt="Foto de ${nombreCompleto}" loading="lazy" onerror="this.src='https://randomuser.me/api/portraits/lego/1.jpg'">
+            </div>
+            <div class="cliente-info">
+                <div class="cliente-nombre">${escapeHtml(nombreCompleto)}</div>
+                <div class="cliente-ubicacion">
+                    <span></span> ${escapeHtml(ciudad)}, ${escapeHtml(pais)}
+                </div>
+                <div class="reseña">
+                    <i>“</i> ${escapeHtml(reseña)} <i>”</i>
+                </div>
+                <div class="badge-random">Cliente verificado</div>
+            </div>
+        `;
+        return tarjetaDiv;
+    }
+
+    // Función auxiliar para escapar HTML (seguridad)
+    function escapeHtml(str) {
+        if (!str) return '';
+        return str.replace(/[&<>]/g, function(m) {
+            if (m === '&') return '&amp;';
+            if (m === '<') return '&lt;';
+            if (m === '>') return '&gt;';
+            return m;
+        }).replace(/[\uD800-\uDBFF][\uDC00-\uDFFF]/g, function(c) {
+            return c;
+        });
+    }
+
+    //Estado de la aplicación 
+    let clientesActuales = [];     // guardamos objetos usuario originales y su reseña asignada
+
+    // Renderizar todo el grid desde clientesActuales
+    function renderizarClientes() {
+        const container = document.getElementById('clientesContainer');
+        if (!container) return;
+        if (clientesActuales.length === 0) {
+            container.innerHTML = `<div style="grid-column:1/-1; text-align:center; padding:3rem;">No hay clientes aún. Presiona "Generar nuevos clientes" 🤝</div>`;
+            return;
+        }
+        const fragment = document.createDocumentFragment();
+        for (let item of clientesActuales) {
+            const tarjeta = crearTarjetaCliente(item.usuario, item.resenna);
+            fragment.appendChild(tarjeta);
+        }
+        container.innerHTML = '';
+        container.appendChild(fragment);
+    }
+
+    // Generar N nuevos clientes (sobrescribe la lista)
+    async function generarNuevosClientes(cantidad = 6) {
+        const container = document.getElementById('clientesContainer');
+        // mostrar loader visual dentro del contenedor mientras carga
+        container.innerHTML = `<div style="grid-column:1/-1; text-align:center; padding:2rem;"><div class="loader" style="margin:0 auto 10px;"></div><span>Cargando nuevos perfiles...</span></div>`;
+
+        try {
+            // Llamamos a la API para pedir varios usuarios de una sola vez (results=cantidad)
+            const respuesta = await fetch(`https://randomuser.me/api/?results=${cantidad}`);
+            if (!respuesta.ok) throw new Error('Error en la red');
+            const data = await respuesta.json();
+            const usuarios = data.results;
+
+            const nuevosItems = usuarios.map(usuario => ({
+                usuario: usuario,
+                resenna: obtenerResennaAleatoria()
+            }));
+
+            clientesActuales = nuevosItems;
+            renderizarClientes();
+        } catch (error) {
+            console.error("Fallo al generar clientes:", error);
+            // Modo fallback: generar datos mock a partir de solicitudes individuales? Mejor mostrar mensaje amigable
+            // Intentamos generar cantidad de forma individual para no dejar vacío
+            const fallbackUsers = [];
+            for (let i = 0; i < cantidad; i++) {
+                try {
+                    const user = await obtenerUsuarioRandom(); // función robusta con fallback interno
+                    fallbackUsers.push({ usuario: user, resenna: obtenerResennaAleatoria() });
+                } catch(e) {
+                    // último recurso
+                    fallbackUsers.push({ 
+                        usuario: { name: { first: "Ejemplo", last: "Cliente" }, picture: { large: "https://randomuser.me/api/portraits/women/1.jpg" }, location: { city: "Genérico", country: "Demo" }, login:{ uuid: `f${i}`} },
+                        resenna: "Equipo increíble, servicio 10/10."
+                    });
+                }
+            }
+            clientesActuales = fallbackUsers;
+            renderizarClientes();
+        }
+    }
+
+    // Agregar un nuevo cliente (mantiene los existentes + 1)
+    async function agregarUnCliente() {
+        // Mostrar estado de carga ligero: no queremos perder los actuales
+        const btnAgregar = document.getElementById('btnAgregarCliente');
+        const textoOriginal = btnAgregar.innerHTML;
+        btnAgregar.innerHTML = `<span class="loader" style="border-color:#fff; border-top-color:#2c7da0; width:16px; height:16px;"></span> Cargando...`;
+        btnAgregar.disabled = true;
+
+        try {
+            const nuevoUsuario = await obtenerUsuarioRandom();
+            const nuevaResenna = obtenerResennaAleatoria();
+            clientesActuales.push({
+                usuario: nuevoUsuario,
+                resenna: nuevaResenna
+            });
+            renderizarClientes();
+        } catch (error) {
+            console.warn("Error agregando cliente individual", error);
+            // fallback local
+            const fakeUser = {
+                name: { first: "Nuevo", last: "Cliente" },
+                picture: { large: "https://randomuser.me/api/portraits/lego/5.jpg" },
+                location: { city: "Ciudad", country: "Randomlandia" },
+                login: { uuid: `local-${Date.now()}` }
+            };
+            clientesActuales.push({ usuario: fakeUser, resenna: "¡Me encantó la experiencia!" });
+            renderizarClientes();
+        } finally {
+            btnAgregar.innerHTML = textoOriginal;
+            btnAgregar.disabled = false;
+        }
+    }
+
+    // Inicializar la sección cargando 4 clientes por defecto
+    async function init() {
+        // Eventos
+        const btnGenerar = document.getElementById('btnGenerarClientes');
+        const btnAgregar = document.getElementById('btnAgregarCliente');
+        if (btnGenerar) btnGenerar.addEventListener('click', () => generarNuevosClientes(6));
+        if (btnAgregar) btnAgregar.addEventListener('click', agregarUnCliente);
+        
+        // carga inicial: 4 clientes
+        await generarNuevosClientes(4);
+    }
+
+    // Ejecutar inicio
+    init();
+</script>
+</body>
+</html>

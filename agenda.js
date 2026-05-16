@@ -1,126 +1,59 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>Lalo y Gera | Fisioterapia - Inicio</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-</head>
-<body>
-    <header>
-        <div class="logo-area">
-            <div class="logo-svg">
-                <svg width="40" viewBox="0 0 100 100"><circle cx="50" cy="50" r="46" fill="#2c7a5e"/><path d="M50 30 C42 30 36 36 36 44 C36 52 42 58 50 58 C58 58 64 52 64 44 C64 36 58 30 50 30Z" fill="white"/><path d="M44 58 L49 68 L53 68 L58 58 L55 62 L52 64 L48 64 L45 62 L44 58Z" fill="#137C5C"/></svg>
-            </div>
-            <div>
-                <h1>Lalo y Gera</h1>
-                <p>Fisioterapia avanzada</p>
-            </div>
-        </div>
-        <nav>
-            <ul class="nav-menu">
-                <li><a href="index.html" class="active">Inicio</a></li>
-                <li><a href="servicios.html">Servicios</a></li>
-                <li><a href="contacto.html">Contacto</a></li>
-                <li><a href="carrito.html">🛒 Carrito (<span id="cartCount">0</span>)</a></li>
-                <li><a href="resenas.html">⭐ Reseñas</a></li>
-            </ul>
-            <button class="dark-mode-toggle" id="darkModeToggle">🌙 Modo oscuro</button>
-        </nav>
-    </header>
+//Cargar la API de Google Maps (asegúrate de reemplazar TU_API_KEY) -->
+src="https://maps.googleapis.com/maps/api/js?key=TU_API_KEY_AQUI&callback=initMap" async defer></src=>
+        
+// Variable global para el mapa
+let map;
+let marker;
 
-    <!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>Agenda tu Cita | Fisioterapia · Mapa interactivo</title>
-<body>
-<div class="dashboard">
-    <!-- COLUMNA IZQUIERDA: FORMULARIO DE AGENDA -->
-    <div class="appointment-card">
-        <div class="header">
-            <h1>📅 Agenda tu cita</h1>
-            <p>Completa tus datos y elige día y hora disponible</p>
-        </div>
-        <div class="form-container">
-            <form id="appointmentForm" novalidate>
-                <div class="form-group">
-                    <label><i>👤</i> Nombre completo</label>
-                    <input type="text" id="fullName" placeholder="Ej: Ana María Pérez" autocomplete="name">
-                    <div id="nameError" class="error-msg">❌ No se permiten caracteres especiales como @, #, $, %, &, *, etc.</div>
-                </div>
+// Función que inicializa el mapa (será llamada por la API de Google Maps)
+function initMap() {
+// Coordenadas de ejemplo: Clínica de fisioterapia en Madrid (Puerta del Sol área)
+// Puedes cambiar lat/lng por la dirección real de tu consulta.
+const clinicLocation = { lat: 40.416775, lng: -3.703790 }; // Ejemplo: Madrid, Puerta del Sol
+            
+map = new google.maps.Map(document.getElementById("map"), {
+center: clinicLocation,
+zoom: 15,
+mapTypeControl: true,
+streetViewControl: true,
+fullscreenControl: true,
+styles: [
+    {
+        featureType: "poi",
+        elementType: "labels",
+        stylers: [{ visibility: "off" }],
+    },
+],
+});
+            
+marker = new google.maps.Marker({
+position: clinicLocation,
+map: map,
+title: "Fisioterapia Integral · Tu centro de bienestar",
+animation: google.maps.Animation.DROP,
+});
+            
+// Añadir un InfoWindow con más detalles
+const infoWindow = new google.maps.InfoWindow({
+content: `<div style="font-family:system-ui;padding:5px;"><strong>🏥 Clínica de Fisioterapia</strong><br>Calle Ejemplo 123, Madrid<br>📞 Llámanos al +34 912 345 678</div>`,
+});
+            
+marker.addListener("click", () => {
+infoWindow.open(map, marker);
+});
+            
+// Opcional: centrar bien si el contenedor tiene un tamaño dinámico
+google.maps.event.addDomListener(window, "resize", () => {
+map.setCenter(clinicLocation);
+});
+}
+        
+// Fallback en caso de que la API no cargue (por si la key es inválida o hay error)
+function mapError() {
+    document.getElementById("map").innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100%;background:#e9f0ee;color:#2c5a55;padding:20px;text-align:center;">⚠️ No se pudo cargar el mapa. Por favor, verifica tu conexión o la clave de API de Google Maps.</div>';
+}
 
-                <div class="form-group">
-                    <label><i>📧</i> Correo electrónico</label>
-                    <input type="email" id="email" placeholder="tucorreo@ejemplo.com" autocomplete="email">
-                    <div id="emailError" class="error-msg">⚠️ Ingresa un correo válido (ej: nombre@dominio.com)</div>
-                </div>
-
-                <div class="form-group">
-                    <label><i>📞</i> Número telefónico</label>
-                    <input type="tel" id="phone" placeholder="Ej: 555 123 4567" autocomplete="tel">
-                    <div id="phoneError" class="error-msg">📱 El teléfono debe tener al menos 8 dígitos (solo números, espacios o guiones)</div>
-                </div>
-
-                <div class="row-2cols">
-                    <div class="form-group">
-                        <label><i>📆</i> Fecha</label>
-                        <input type="date" id="appointmentDate">
-                        <div id="dateError" class="error-msg">🗓️ Selecciona una fecha válida (futuro y dentro de 3 meses)</div>
-                    </div>
-                    <div class="form-group">
-                        <label><i>⏰</i> Horario (9:00 - 19:00)</label>
-                        <select id="appointmentTime">
-                            <option value="">-- Selecciona hora --</option>
-                        </select>
-                        <div id="timeError" class="error-msg">⏱️ El horario debe estar entre 9:00 y 19:00</div>
-                    </div>
-                </div>
-
-                <button type="submit" class="btn-agendar">
-                    📌 Reservar cita
-                </button>
-
-                <div class="horario-info">
-                    <span>🕒 Horario de atención:</span>
-                    <span>Lunes a Domingo • 9:00 AM - 7:00 PM</span>
-                    <span>(última cita 18:30 para inicio puntual)</span>
-                </div>
-            </form>
-        </div>
-        <footer>
-            📍 Fisioterapia Integral | Agendamiento seguro
-        </footer>
-    </div>
-
-    <!-- COLUMNA DERECHA: MAPA DE GOOGLE MAPS + DIRECCIÓN -->
-    <div class="map-card">
-        <div class="map-header">
-            <h2>📍 ¿Dónde estamos?</h2>
-            <p>Visítanos en nuestro centro de fisioterapia</p>
-        </div>
-        <div id="map" style="height: 320px;"></div>
-        <div class="address-info">
-            <strong>🏢 Dirección:</strong>
-            <div class="direccion-detalle">
-                Calle de la Salud, 42 · 28013 Madrid<br>
-                (Junto a la estación de Ópera)
-            </div>
-            <a href="https://lh3.googleusercontent.com/gps-cs-s/APNQkAE5nh_wlkl-bJUOEq4jA1QxwoU2lVR2i_TNUq6zhMIh67XEe_iTFAlAIyBhziwUeBjIzxXJdF1SYZq92mnecnRTXmOOrDs0CPRYDuL2hhHL2_CaKemigAc3GF-sscNIYKDCGgoyBw=w408-h305-k-no" target="_blank" class="btn-maps">
-                🧭 Cómo llegar (Google Maps)
-            </a>
-            <div style="margin-top: 12px; font-size: 0.75rem; color:#4f6f6a;">
-                📞 Teléfono: +34 910 123 456 · ✉️ hola@fisioterapiaejemplo.com
-            </div>
-        </div>
-    </div>
-</div>
-
-<script>
-    // ---------- VALIDACIONES DEL FORMULARIO (copia robusta igual a la anterior) ----------
-    
+// VALIDACIONES DEL FORMULARIO (copia robusta igual a la anterior) 
     function hasForbiddenSpecialChars(str) {
         const forbiddenRegex = /[@#$%&*+={}\[\]|\\/:;"'<>,`~]/;
         return forbiddenRegex.test(str);
@@ -335,6 +268,3 @@
             mapDiv.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100%;background:#f0f4f2;color:#a03d2f;">⚠️ Error de conexión con Google Maps. Revisa la API Key.</div>';
         }
     }, 3000);
-</script>
-</body>
-</html>

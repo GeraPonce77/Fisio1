@@ -1,8 +1,3 @@
-/* ============================================================
- * AGENDA.JS - Validaciones del formulario de citas
- * LALO Y GERA - FISIOTERAPIA
- * ============================================================ */
-
 // Expresiones regulares
 const REGEX = {
     // Solo letras, espacios, puntos y guiones. Minimo 3 caracteres
@@ -21,7 +16,7 @@ const REGEX = {
     time: /^(0[9-9]|1[0-9]):[0-5][0-9]$/
 };
 
-// Validacion especifica para horario (9:00 a 19:00)
+// Validacion especifica para horario (9:00 a 17:00)
 function isValidTimeRange(time) {
     if (!time) return false;
     const [hour, minute] = time.split(':').map(Number);
@@ -58,7 +53,7 @@ function validateEmail(email) {
 function validatePhone(phone) {
     if (!phone) return false;
     const digitsOnly = phone.replace(/\D/g, '');
-    return digitsOnly.length >= 8 && digitsOnly.length <= 15;
+    return digitsOnly.length >= 8 && digitsOnly.length <= 10;
 }
 
 // Validar fecha (formato + rango)
@@ -145,7 +140,7 @@ function populateTimeOptions() {
     timeSelect.innerHTML = '<option value="">-- Selecciona hora --</option>';
     
     for (let hour = 9; hour <= 16; hour++) {
-        for (let minute of [0, 30]) {
+        for (let minute of [0]) {
             const hourStr = hour.toString().padStart(2, '0');
             const minuteStr = minute.toString().padStart(2, '0');
             const timeValue = `${hourStr}:${minuteStr}`;

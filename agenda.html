@@ -25,7 +25,6 @@
                 <li><a href="contacto.html">Contacto</a></li>
                 <li><a href="carrito.html">🛒 Carrito (<span id="cartCount">0</span>)</a></li>
             </ul>
-            <button class="dark-mode-toggle" id="darkModeToggle">🌙 Modo oscuro</button>
         </nav>
     </header>
 
@@ -54,36 +53,36 @@
                 <div class="form-group">
                     <label><i>📧</i> Correo electrónico</label>
                     <input type="email" id="email" placeholder="tucorreo@ejemplo.com" autocomplete="email">
-                    <div id="emailError" class="error-msg">⚠️ Ingresa un correo válido (ej: nombre@dominio.com)</div>
+                    <div id="emailError" class="error-msg">Ingresa un correo válido (ej: nombre@dominio.com)</div>
                 </div>
 
                 <div class="form-group">
-                    <label><i>📞</i> Número telefónico</label>
+                    <label><i></i> Número telefónico</label>
                     <input type="tel" id="phone" placeholder="Ej: 555 123 4567" autocomplete="tel">
                     <div id="phoneError" class="error-msg">📱 El teléfono debe tener al menos 8 dígitos (solo números, espacios o guiones)</div>
                 </div>
 
                 <div class="row-2cols">
                     <div class="form-group">
-                        <label><i>📆</i> Fecha</label>
+                        <label><i></i> Fecha</label>
                         <input type="date" id="appointmentDate">
-                        <div id="dateError" class="error-msg">🗓️ Selecciona una fecha válida (futuro y dentro de 3 meses)</div>
+                        <div id="dateError" class="error-msg">Selecciona una fecha válida (futuro y dentro de 3 meses)</div>
                     </div>
                     <div class="form-group">
-                        <label><i>⏰</i> Horario (9:00 - 19:00)</label>
+                        <label><i></i> Horario (9:00 - 19:00)</label>
                         <select id="appointmentTime">
                             <option value="">-- Selecciona hora --</option>
                         </select>
-                        <div id="timeError" class="error-msg">⏱️ El horario debe estar entre 9:00 y 19:00</div>
+                        <div id="timeError" class="error-msg">El horario debe estar entre 9:00 y 19:00</div>
                     </div>
                 </div>
 
                 <button type="submit" class="btn-agendar">
-                    📌 Reservar cita
+                   
                 </button>
 
                 <div class="horario-info">
-                    <span>🕒 Horario de atención:</span>
+                    <span>Horario de atención:</span>
                     <span>Lunes a Domingo • 9:00 AM - 7:00 PM</span>
                     <span>(última cita 18:30 para inicio puntual)</span>
                 </div>
@@ -92,28 +91,6 @@
         <footer>
             📍 Fisioterapia Integral | Agendamiento seguro
         </footer>
-    </div>
-
-    <!-- COLUMNA DERECHA: MAPA DE GOOGLE MAPS + DIRECCIÓN -->
-    <div class="map-card">
-        <div class="map-header">
-            <h2>📍 ¿Dónde estamos?</h2>
-            <p>Visítanos en nuestro centro de fisioterapia</p>
-        </div>
-        <div id="map" style="height: 320px;"></div>
-        <div class="address-info">
-            <strong>🏢 Dirección:</strong>
-            <div class="direccion-detalle">
-                Calle de la Salud, 42 · 28013 Madrid<br>
-                (Junto a la estación de Ópera)
-            </div>
-            <a href="https://lh3.googleusercontent.com/gps-cs-s/APNQkAE5nh_wlkl-bJUOEq4jA1QxwoU2lVR2i_TNUq6zhMIh67XEe_iTFAlAIyBhziwUeBjIzxXJdF1SYZq92mnecnRTXmOOrDs0CPRYDuL2hhHL2_CaKemigAc3GF-sscNIYKDCGgoyBw=w408-h305-k-no" target="_blank" class="btn-maps">
-                🧭 Cómo llegar (Google Maps)
-            </a>
-            <div style="margin-top: 12px; font-size: 0.75rem; color:#4f6f6a;">
-                📞 Teléfono: +34 910 123 456 · ✉️ hola@fisioterapiaejemplo.com
-            </div>
-        </div>
     </div>
 </div>
 

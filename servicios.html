@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lalo y Gera | Servicios de Fisioterapia</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="logo-area">
+            <div class="logo-svg">
+                <svg width="40" viewBox="0 0 100 100"><circle cx="50" cy="50" r="46" fill="#2c7a5e"/><path d="M50 30 C42 30 36 36 36 44 C36 52 42 58 50 58 C58 58 64 52 64 44 C64 36 58 30 50 30Z" fill="white"/></svg>
+            </div>
+            <div><h1>Lalo y Gera</h1><p>Fisioterapia avanzada</p></div>
+        </div>
+        <nav>
+            <ul class="nav-menu">
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="servicios.html" class="active">Servicios</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+                <li><a href="carrito.html">🛒 Carrito (<span id="cartCount">0</span>)</a></li>
+            </ul>
+            <button class="dark-mode-toggle">🌙 Modo oscuro</button>
+        </nav>
+    </header>
+
+    <main>
+        <section class="servicios-page">
+            <h1 class="page-title">Nuestros Servicios</h1>
+            
+            <div class="servicios-grid-page" id="serviciosContainer">
+                <!-- Servicios cargados dinámicamente desde JS -->
+            </div>
+
+            <section class="precios-section">
+                <h2 class="section-title">💰 Paquetes y precios</h2>
+                <div class="grid-precios">
+                    <div class="tarjeta-precio">
+                        <h3>Consulta única</h3>
+                        <div class="precio">$450 MXN</div>
+                        <p>Evaluación + diagnóstico</p>
+                        <button class="btn-agregar-carrito" data-id="1" data-nombre="Consulta única" data-precio="450">Agregar al carrito</button>
+                    </div>
+                    <div class="tarjeta-precio featured">
+                        <div class="popular">⭐ Más popular</div>
+                        <h3>Paquete 5 sesiones</h3>
+                        <div class="precio">$2,000 MXN</div>
+                        <p>Ahorra $250</p>
+                        <button class="btn-agregar-carrito" data-id="2" data-nombre="Paquete 5 sesiones" data-precio="2000">Agregar al carrito</button>
+                    </div>
+                    <div class="tarjeta-precio">
+                        <h3>Paquete 10 sesiones</h3>
+                        <div class="precio">$3,800 MXN</div>
+                        <p>Ahorra $700</p>
+                        <button class="btn-agregar-carrito" data-id="3" data-nombre="Paquete 10 sesiones" data-precio="3800">Agregar al carrito</button>
+                    </div>
+                </div>
+            </section>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <p>📱 Síguenos: <a href="#">Instagram</a> | <a href="#">Facebook</a> | <a href="#">TikTok</a></p>
+            <p>📧 contacto@laloygera.com</p>
+            <p>© 2026 Lalo y Gera Fisioterapia</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

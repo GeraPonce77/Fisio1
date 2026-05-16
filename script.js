@@ -3,7 +3,55 @@
  * Programación Orientada a Objetos: Clase Carrito
  * Formulario con validación y eventos
  * ============================================================ */
+/* ============================================================
+ * MODO OSCURO - Persistente en TODAS las páginas
+ * ============================================================ */
 
+function aplicarModoOscuro() {
+    const boton = document.getElementById('darkModeToggle');
+    const modoOscuroActivado = localStorage.getItem('darkMode') === 'enabled';
+    
+    if (modoOscuroActivado) {
+        document.body.classList.add('dark-mode');
+    } else {
+        document.body.classList.remove('dark-mode');
+    }
+    
+    if (boton) {
+        if (modoOscuroActivado) {
+            boton.textContent = '☀️ Modo día';
+        } else {
+            boton.textContent = '🌙 Modo noche';
+        }
+    }
+}
+
+function inicializarBotonModoOscuro() {
+    const boton = document.getElementById('darkModeToggle');
+    if (!boton) return;
+    
+    const nuevoBoton = boton.cloneNode(true);
+    boton.parentNode.replaceChild(nuevoBoton, boton);
+    
+    nuevoBoton.addEventListener('click', function() {
+        const isDarkMode = document.body.classList.contains('dark-mode');
+        
+        if (isDarkMode) {
+            localStorage.setItem('darkMode', 'disabled');
+            document.body.classList.remove('dark-mode');
+            nuevoBoton.textContent = '🌙 Modo noche';
+        } else {
+            localStorage.setItem('darkMode', 'enabled');
+            document.body.classList.add('dark-mode');
+            nuevoBoton.textContent = '☀️ Modo día';
+        }
+    });
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    aplicarModoOscuro();
+    inicializarBotonModoOscuro();
+});
 // ========== CLASE CARRITO (POO) ==========
 class Carrito {
     constructor() {

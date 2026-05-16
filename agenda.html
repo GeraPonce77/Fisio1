@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>Lalo y Gera | Fisioterapia - Inicio</title>
+    <title>Lalo y Gera | Fisioterapia - Agenda tu cita</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
@@ -11,7 +11,11 @@
     <header>
         <div class="logo-area">
             <div class="logo-svg">
-                <svg width="40" viewBox="0 0 100 100"><circle cx="50" cy="50" r="46" fill="#2c7a5e"/><path d="M50 30 C42 30 36 36 36 44 C36 52 42 58 50 58 C58 58 64 52 64 44 C64 36 58 30 50 30Z" fill="white"/><path d="M44 58 L49 68 L53 68 L58 58 L55 62 L52 64 L48 64 L45 62 L44 58Z" fill="#137C5C"/></svg>
+                <svg width="40" viewBox="0 0 100 100">
+                    <circle cx="50" cy="50" r="46" fill="#2c7a5e"/>
+                    <path d="M50 30 C42 30 36 36 36 44 C36 52 42 58 50 58 C58 58 64 52 64 44 C64 36 58 30 50 30Z" fill="white"/>
+                    <path d="M44 58 L49 68 L53 68 L58 58 L55 62 L52 64 L48 64 L45 62 L44 58Z" fill="#137C5C"/>
+                </svg>
             </div>
             <div>
                 <h1>Lalo y Gera</h1>
@@ -28,289 +32,72 @@
         </nav>
     </header>
 
-    <!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>Agenda tu Cita | Fisioterapia · Mapa interactivo</title>
-<body>
-<div class="dashboard">
-    <!-- COLUMNA IZQUIERDA: FORMULARIO DE AGENDA -->
-    <div class="appointment-card">
-        <div class="header">
-            <h1>📅 Agenda tu cita</h1>
-            <p>Completa tus datos y elige día y hora disponible</p>
-        </div>
-        <div class="form-container">
-            <form id="appointmentForm" novalidate>
-                <div class="form-group">
-                    <label><i>👤</i> Nombre completo</label>
-                    <input type="text" id="fullName" placeholder="Ej: Ana María Pérez" autocomplete="name">
-                    <div id="nameError" class="error-msg">❌ No se permiten caracteres especiales como @, #, $, %, &, *, etc.</div>
-                </div>
-
-                <div class="form-group">
-                    <label><i>📧</i> Correo electrónico</label>
-                    <input type="email" id="email" placeholder="tucorreo@ejemplo.com" autocomplete="email">
-                    <div id="emailError" class="error-msg">Ingresa un correo válido (ej: nombre@dominio.com)</div>
-                </div>
-
-                <div class="form-group">
-                    <label><i></i> Número telefónico</label>
-                    <input type="tel" id="phone" placeholder="Ej: 555 123 4567" autocomplete="tel">
-                    <div id="phoneError" class="error-msg">📱 El teléfono debe tener al menos 8 dígitos (solo números, espacios o guiones)</div>
-                </div>
-
-                <div class="row-2cols">
+    <main>
+        <div class="appointment-card">
+            <div class="header">
+                <h1>📅 Agenda tu cita</h1>
+                <p>Completa tus datos y elige día y hora disponible</p>
+            </div>
+            <div class="form-container">
+                <form id="appointmentForm" novalidate>
                     <div class="form-group">
-                        <label><i></i> Fecha</label>
-                        <input type="date" id="appointmentDate">
-                        <div id="dateError" class="error-msg">Selecciona una fecha válida (futuro y dentro de 3 meses)</div>
+                        <label><i class="fas fa-user"></i> Nombre completo</label>
+                        <input type="text" id="fullName" placeholder="Ej: Ana María Pérez">
                     </div>
+
                     <div class="form-group">
-                        <label><i></i> Horario (9:00 - 19:00)</label>
-                        <select id="appointmentTime">
-                            <option value="">-- Selecciona hora --</option>
-                        </select>
-                        <div id="timeError" class="error-msg">El horario debe estar entre 9:00 y 19:00</div>
+                        <label><i class="fas fa-envelope"></i> Correo electrónico</label>
+                        <input type="email" id="email" placeholder="tucorreo@ejemplo.com">
                     </div>
-                </div>
 
-                <button type="submit" class="btn-agendar">
-                   
-                </button>
+                    <div class="form-group">
+                        <label><i class="fas fa-phone"></i> Número telefónico</label>
+                        <input type="tel" id="phone" placeholder="Ej: 5551234567">
+                    </div>
 
-                <div class="horario-info">
-                    <span>Horario de atención:</span>
-                    <span>Lunes a Domingo • 9:00 AM - 7:00 PM</span>
-                    <span>(última cita 18:30 para inicio puntual)</span>
-                </div>
-            </form>
+                    <div class="row-2cols">
+                        <div class="form-group">
+                            <label><i class="fas fa-calendar"></i> Fecha</label>
+                            <input type="date" id="appointmentDate">
+                        </div>
+                        <div class="form-group">
+                            <label><i class="fas fa-clock"></i> Horario (9:00 - 19:00)</label>
+                            <select id="appointmentTime">
+                                <option value="">-- Selecciona hora --</option>
+                                <option value="09:00">09:00</option>
+                                <option value="10:00">10:00</option>
+                                <option value="11:00">11:00</option>
+                                <option value="12:00">12:00</option>
+                                <option value="13:00">13:00</option>
+                                <option value="14:00">14:00</option>
+                                <option value="15:00">15:00</option>
+                                <option value="16:00">16:00</option>
+                                <option value="17:00">17:00</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn-agendar">Confirmar reserva</button>
+
+                    <div class="horario-info">
+                        <span>Horario de atención:</span>
+                        <span>Lunes a Domingo • 9:00 AM - 7:00 PM</span>
+                        <span>(última cita 18:30 para inicio puntual)</span>
+                    </div>
+                </form>
+            </div>
         </div>
-        <footer>
-            📍 Fisioterapia Integral | Agendamiento seguro
-        </footer>
-    </div>
-</div>
+    </main>
 
-<script>
-    // ---------- VALIDACIONES DEL FORMULARIO (copia robusta igual a la anterior) ----------
-    
-    function hasForbiddenSpecialChars(str) {
-        const forbiddenRegex = /[@#$%&*+={}\[\]|\\/:;"'<>,`~]/;
-        return forbiddenRegex.test(str);
-    }
+    <footer>
+        <div class="footer-content">
+            <p>📧 contacto@laloygera.com</p>
+            <p>© 2026 Lalo y Gera Fisioterapia</p>
+        </div>
+    </footer>
 
-    function validateName(name) {
-        if (!name || name.trim() === "") return false;
-        if (hasForbiddenSpecialChars(name)) return false;
-        const allowedPattern = /^[a-zA-ZáéíóúñÑüÜ\s\.\-]+$/;
-        if (!allowedPattern.test(name)) return false;
-        return true;
-    }
-
-    function validateEmail(email) {
-        if (!email) return false;
-        const emailRegex = /^[^\s@]+@([^\s@]+\.)+[^\s@]+$/;
-        return emailRegex.test(email.trim());
-    }
-
-    function validatePhone(phone) {
-        if (!phone) return false;
-        const cleaned = phone.replace(/[\s\-\(\)]/g, '');
-        const digitsOnly = cleaned.replace(/\D/g, '');
-        if (digitsOnly.length < 8 || digitsOnly.length > 15) return false;
-        return /^\d+$/.test(digitsOnly);
-    }
-
-    function validateDate(dateString) {
-        if (!dateString) return false;
-        const selectedDate = new Date(dateString);
-        const today = new Date();
-        today.setHours(0, 0, 0, 0);
-        const maxDate = new Date();
-        maxDate.setMonth(maxDate.getMonth() + 3);
-        maxDate.setHours(23, 59, 59, 999);
-        if (selectedDate < today) return false;
-        if (selectedDate > maxDate) return false;
-        return true;
-    }
-
-    function validateTime(timeValue) {
-        if (!timeValue) return false;
-        const [hour, minute] = timeValue.split(':').map(Number);
-        if (isNaN(hour)) return false;
-        if (hour < 9 || hour > 19) return false;
-        if (hour === 19 && minute > 0) return false;
-        return true;
-    }
-
-    function populateTimeOptions() {
-        const timeSelect = document.getElementById('appointmentTime');
-        if (!timeSelect) return;
-        timeSelect.innerHTML = '<option value="">-- Selecciona hora --</option>';
-        const startHour = 9;
-        const endHour = 19;
-        for (let h = startHour; h <= endHour; h++) {
-            if (h === endHour) {
-                const option19 = document.createElement('option');
-                option19.value = "19:00";
-                option19.textContent = "19:00";
-                timeSelect.appendChild(option19);
-                break;
-            }
-            for (let m of [0, 30]) {
-                let hourStr = h.toString().padStart(2, '0');
-                let minuteStr = m.toString().padStart(2, '0');
-                let timeValue = `${hourStr}:${minuteStr}`;
-                if (h === 18 && m === 30) {
-                    let option = document.createElement('option');
-                    option.value = timeValue;
-                    option.textContent = timeValue;
-                    timeSelect.appendChild(option);
-                } else if (h < 18) {
-                    let option = document.createElement('option');
-                    option.value = timeValue;
-                    option.textContent = timeValue;
-                    timeSelect.appendChild(option);
-                } else if (h === 18 && m === 0) {
-                    let option = document.createElement('option');
-                    option.value = timeValue;
-                    option.textContent = timeValue;
-                    timeSelect.appendChild(option);
-                }
-            }
-        }
-        // Asegurar que 19:00 aparezca
-        let exists1900 = false;
-        for(let i=0; i<timeSelect.options.length; i++) {
-            if(timeSelect.options[i].value === "19:00") exists1900=true;
-        }
-        if(!exists1900) {
-            let opt = document.createElement('option');
-            opt.value="19:00";
-            opt.textContent="19:00";
-            timeSelect.appendChild(opt);
-        }
-    }
-
-    function toggleInputError(inputElement, errorElement, isValid) {
-        if (!isValid) {
-            inputElement.classList.add('invalid-input');
-            errorElement.classList.add('visible');
-        } else {
-            inputElement.classList.remove('invalid-input');
-            errorElement.classList.remove('visible');
-        }
-    }
-
-    function setupRealTimeValidation() {
-        const nameInput = document.getElementById('fullName');
-        const emailInput = document.getElementById('email');
-        const phoneInput = document.getElementById('phone');
-        const dateInput = document.getElementById('appointmentDate');
-        const timeSelect = document.getElementById('appointmentTime');
-        
-        const nameErr = document.getElementById('nameError');
-        const emailErr = document.getElementById('emailError');
-        const phoneErr = document.getElementById('phoneError');
-        const dateErr = document.getElementById('dateError');
-        const timeErr = document.getElementById('timeError');
-
-        nameInput.addEventListener('input', () => toggleInputError(nameInput, nameErr, validateName(nameInput.value)));
-        emailInput.addEventListener('input', () => toggleInputError(emailInput, emailErr, validateEmail(emailInput.value)));
-        phoneInput.addEventListener('input', () => toggleInputError(phoneInput, phoneErr, validatePhone(phoneInput.value)));
-        dateInput.addEventListener('change', () => toggleInputError(dateInput, dateErr, validateDate(dateInput.value)));
-        timeSelect.addEventListener('change', () => toggleInputError(timeSelect, timeErr, validateTime(timeSelect.value)));
-    }
-
-    function setDatePickerLimits() {
-        const datePicker = document.getElementById('appointmentDate');
-        if (!datePicker) return;
-        const today = new Date();
-        const yyyy = today.getFullYear();
-        const mm = String(today.getMonth() + 1).padStart(2, '0');
-        const dd = String(today.getDate()).padStart(2, '0');
-        const minDate = `${yyyy}-${mm}-${dd}`;
-        const maxDateObj = new Date();
-        maxDateObj.setMonth(maxDateObj.getMonth() + 3);
-        const maxY = maxDateObj.getFullYear();
-        const maxM = String(maxDateObj.getMonth() + 1).padStart(2, '0');
-        const maxD = String(maxDateObj.getDate()).padStart(2, '0');
-        const maxDate = `${maxY}-${maxM}-${maxD}`;
-        datePicker.setAttribute('min', minDate);
-        datePicker.setAttribute('max', maxDate);
-    }
-
-    function handleFormSubmit(event) {
-        event.preventDefault();
-        
-        const name = document.getElementById('fullName').value;
-        const email = document.getElementById('email').value;
-        const phone = document.getElementById('phone').value;
-        const date = document.getElementById('appointmentDate').value;
-        const time = document.getElementById('appointmentTime').value;
-        
-        const isNameValid = validateName(name);
-        const isEmailValid = validateEmail(email);
-        const isPhoneValid = validatePhone(phone);
-        const isDateValid = validateDate(date);
-        const isTimeValid = validateTime(time);
-        
-        const nameErr = document.getElementById('nameError');
-        const emailErr = document.getElementById('emailError');
-        const phoneErr = document.getElementById('phoneError');
-        const dateErr = document.getElementById('dateError');
-        const timeErr = document.getElementById('timeError');
-        const nameInput = document.getElementById('fullName');
-        const emailInput = document.getElementById('email');
-        const phoneInput = document.getElementById('phone');
-        const dateInput = document.getElementById('appointmentDate');
-        const timeSelect = document.getElementById('appointmentTime');
-        
-        toggleInputError(nameInput, nameErr, isNameValid);
-        toggleInputError(emailInput, emailErr, isEmailValid);
-        toggleInputError(phoneInput, phoneErr, isPhoneValid);
-        toggleInputError(dateInput, dateErr, isDateValid);
-        toggleInputError(timeSelect, timeErr, isTimeValid);
-        
-        if (!isNameValid || !isEmailValid || !isPhoneValid || !isDateValid || !isTimeValid) {
-            alert("❌ Por favor, revisa los campos.\n- Nombre sin caracteres especiales (@, #, $, etc.)\n- Correo electrónico válido\n- Teléfono con al menos 8 dígitos\n- Fecha válida (hoy + 3 meses)\n- Horario entre 9:00 y 19:00");
-            return;
-        }
-        
-        alert(`✅ ¡Cita agendada con éxito!\n\n📌 Paciente: ${name.trim()}\n📧 Correo: ${email.trim()}\n📞 Teléfono: ${phone.trim()}\n📅 Fecha: ${date}\n⏰ Horario: ${time}\n\nNos vemos en nuestra clínica (revisa el mapa).`);
-        
-        document.getElementById('appointmentForm').reset();
-        document.querySelectorAll('.invalid-input').forEach(el => el.classList.remove('invalid-input'));
-        document.querySelectorAll('.error-msg.visible').forEach(el => el.classList.remove('visible'));
-        populateTimeOptions();
-        setDatePickerLimits();
-        const datePickerReset = document.getElementById('appointmentDate');
-        if(datePickerReset) datePickerReset.value = '';
-        const timeSelReset = document.getElementById('appointmentTime');
-        if(timeSelReset) timeSelReset.value = '';
-    }
-    
-    // Inicializar todo una vez cargado el DOM
-    document.addEventListener('DOMContentLoaded', () => {
-        populateTimeOptions();
-        setDatePickerLimits();
-        setupRealTimeValidation();
-        const form = document.getElementById('appointmentForm');
-        form.addEventListener('submit', handleFormSubmit);
-    });
-    
-    // Capturar error de carga de mapa y mostrar mensaje amigable
-    window.mapError = mapError;
-    // Si la API falla por clave incorrecta, intentaremos mostrar mensaje manual.
-    setTimeout(() => {
-        const mapDiv = document.getElementById('map');
-        if(mapDiv && mapDiv.innerHTML.trim() === '' && typeof google === 'undefined') {
-            mapDiv.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100%;background:#f0f4f2;color:#a03d2f;">⚠️ Error de conexión con Google Maps. Revisa la API Key.</div>';
-        }
-    }, 3000);
-</script>
+    <a href="https://wa.me/521234567890?text=Hola%2C%20quiero%20agendar%20una%20cita" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
 </body>
 </html>

@@ -101,3 +101,6 @@ class Carrito {
         console.log(mensaje);
         // Opcional: mostrar notificación visual
     }
+
+    // ========== INICIALIZAR CARRITO ==========
+const carrito = new Carrito();

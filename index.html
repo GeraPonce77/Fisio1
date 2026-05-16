@@ -3,118 +3,87 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>Lalo y Gera | Fisioterapia </title>    
+    <title>Lalo y Gera | Fisioterapia - Inicio</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-<div class="container">
-    <!-- SECCIÓN SUPERIOR agenda + servicio-->
-    <div class="top-section" style="background: rgba(255,255,255,0.95); border-radius: 2rem; padding: 1.5rem;">
-        <div style="display: flex; justify-content: space-between; align-items: center;">
-            <div class="logo-area">
-                <div class="logo-svg" style="background:#2c7a5e; border-radius:50%; width:60px; height:60px; display:flex; align-items:center; justify-content:center;">
-                    <svg width="40" viewBox="0 0 100 100"><circle cx="50" cy="50" r="46" fill="#D8F0E6"/><path d="M50 30 C42 30 36 36 36 44 C36 52 42 58 50 58 C58 58 64 52 64 44 C64 36 58 30 50 30Z" fill="#166B4E"/><path d="M44 58 L49 68 L53 68 L58 58 L55 62 L52 64 L48 64 L45 62 L44 58Z" fill="#137C5C"/></svg>
-                </div>
-                <div><h1>Lalo y Gera</h1><p>Fisioterapia avanzada</p></div>
+    <header>
+        <div class="logo-area">
+            <div class="logo-svg">
+                <svg width="40" viewBox="0 0 100 100"><circle cx="50" cy="50" r="46" fill="#2c7a5e"/><path d="M50 30 C42 30 36 36 36 44 C36 52 42 58 50 58 C58 58 64 52 64 44 C64 36 58 30 50 30Z" fill="white"/><path d="M44 58 L49 68 L53 68 L58 58 L55 62 L52 64 L48 64 L45 62 L44 58Z" fill="#137C5C"/></svg>
             </div>
+            <div>
+                <h1>Lalo y Gera</h1>
+                <p>Fisioterapia avanzada</p>
+            </div>
+        </div>
+        <nav>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="active">Inicio</a></li>
+                <li><a href="servicios.html">Servicios</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+                <li><a href="carrito.html">🛒 Carrito (<span id="cartCount">0</span>)</a></li>
+            </ul>
             <button class="dark-mode-toggle" id="darkModeToggle">🌙 Modo oscuro</button>
-        </div>
-        <div class="booking-form" style="margin-top: 1rem;">
-            <h3>📅 Agendar cita o paquete</h3>
-            <div class="reservation-grid" style="display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:1rem;">
-                <input type="text" id="nombre" placeholder="Nombre completo">
-                <input type="tel" id="telefono" placeholder="Teléfono">
-                <input type="email" id="email" placeholder="Correo">
-                <input type="date" id="fechaCita">
-                <input type="time" id="horaCita">
-                <select id="duracion">
-                    <option value="45">45 min</option>
-                    <option value="60" selected>60 min</option>
-                    <option value="90">90 min (+$150)</option>
-                </select>
-                <select id="modalidad">
-                    <option value="presencial">Presencial</option>
-                    <option value="domicilio">Domicilio (+$200)</option>
-                    <option value="teleconsulta">Teleconsulta (-$100)</option>
-                </select>
-                <div><input type="radio" name="servicioTipo" value="unica" checked> Cita única $450<br>
-                <input type="radio" name="servicioTipo" value="paquete"> Paquete 5 sesiones $2000 ⭐</div>
-                <input type="text" id="cupon" placeholder="Código descuento (BIENVENIDO10)">
-                <button id="btnAgendar" style="background:#1f8a64; color:white; padding:12px; border-radius:40px;">Confirmar reserva</button>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <h1>Disminuye tu dolor <span class="highlight">en tan solo 50 minutos</span></h1>
+            <p>La fisioterapia y la osteopatía permiten recuperar la movilidad y disminuir el dolor a través de técnicas manuales, ejercicios y uso de agentes físicos.</p>
+            
+            <div class="hero-stats">
+                <div class="stat">
+                    <div class="stat-number" id="counterPacientes">0</div>
+                    <div class="stat-label">Pacientes atendidos</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">5.0</div>
+                    <div class="stat-label">⭐ 600+ reseñas</div>
+                </div>
             </div>
-            <div id="feedbackMsg" class="toast-message" style="display:none; margin-top:10px;"></div>
-            <div class="price-hint" id="precioDinamico"></div>
-            <div id="sesionesRestantesInfo" style="font-size:0.8rem; margin-top:5px;"></div>
+            
+            <div class="hero-buttons">
+                <button class="btn-primary" onclick="window.location.href='contacto.html'">📅 Agendar cita</button>
+                <button class="btn-secondary" onclick="window.location.href='servicios.html'">🔍 Ver servicios</button>
+            </div>
+        </section>
+
+        <section class="terapeutas-section">
+            <h2 class="section-title">👨‍⚕️ Conoce a Lalo y Gera</h2>
+            <div class="terapeutas-grid">
+                <div class="card-terapeuta">
+                    <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Lalo">
+                    <h3>Eduardo Argueta</h3>
+                    <p>Fisioterapeuta especialista en deporte, 12 años de experiencia.</p>
+                </div>
+                <div class="card-terapeuta">
+                    <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Gera">
+                    <h3>Gerardo Segovia</h3>
+                    <p>Rehabilitación neurológica y posturología. Atención personalizada.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <p>📱 Síguenos: 
+                <a href="#">Instagram</a> | 
+                <a href="#">Facebook</a> | 
+                <a href="#">TikTok</a>
+            </p>
+            <p>📧 contacto@laloygera.com</p>
+            <p>© 2026 Lalo y Gera Fisioterapia - Todos los derechos reservados</p>
         </div>
-    </div>
+    </footer>
 
-    <!-- 1. Nuestros terapeutas -->
-    <h2 class="section-title fade-scroll">👨‍⚕️ Conoce a Lalo y Gera</h2>
-    <div class="terapeutas-grid fade-scroll">
-        <div class="card-terapeuta"><img src="https://drive.google.com/drive/home" alt="Lalo"><h3>Eduardo Argueta</h3><p>Fisioterapeuta especialista en deporte, 12 años de experiencia. Certificado en terapia manual.</p></div>
-        <div class="card-terapeuta"><img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Gera"><h3>Gerardo Segovia</h3><p>Rehabilitación neurológica y posturología. Atención personalizada y seguimiento.</p></div>
-    </div>
+    <a href="https://wa.me/521234567890?text=Hola%2C%20quiero%20agendar%20una%20cita" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
 
-    <!-- 2. Testimonios -->
-    <h2 class="section-title fade-scroll">📝 Lo que dicen nuestros pacientes</h2>
-    <div class="testimonios-grid fade-scroll">
-        <div class="testimonial-card">⭐ 5/5 - "El paquete de 5 sesiones me cambió la vida, súper profesionales." - Ana M.</div>
-        <div class="testimonial-card">⭐ 5/5 - "Atención increíble, Lalo y Gera muy comprometidos." - Carlos T.</div>
-        <div class="testimonial-card">⭐ 5/5 - "Me recuperé rápido de una lesión de hombro, gracias." - Fernanda L.</div>
-    </div>
-
-    <!-- 3. Mapa -->
-    <h2 class="section-title fade-scroll">📍 Ubicación</h2>
-    <div class="map-container fade-scroll"><iframe src="https://maps.google.com/maps?q=Av. Insurgentes Sur 123, CDMX&z=15&output=embed" allowfullscreen></iframe></div>
-
-    <!-- 4. WhatsApp flotante (se agrega al final) -->
-    
-    <!-- 5. FAQ -->
-    <h2 class="section-title fade-scroll">❓ Preguntas frecuentes</h2>
-    <div class="faq-list fade-scroll">
-        <div class="faq-item"><div class="faq-question">¿Necesito orden médica? <span>▼</span></div><div class="faq-answer">No es obligatoria, pero si tienes estudios previos te ayudará en la evaluación.</div></div>
-        <div class="faq-item"><div class="faq-question">¿Duele la fisioterapia? <span>▼</span></div><div class="faq-answer">El objetivo es aliviar, puede haber leve molestia controlada pero siempre bienestar.</div></div>
-        <div class="faq-item"><div class="faq-question">¿Aceptan seguro médico? <span>▼</span></div><div class="faq-answer">Aceptamos algunos seguros, consulta facturación.</div></div>
-    </div>
-
-    <!-- 6. Tipos de terapia -->
-    <h2 class="section-title fade-scroll">🩺 Terapias especializadas</h2>
-    <div class="servicios-grid fade-scroll">
-        <div class="servicio-card">🦵 Ortopédica</div>
-        <div class="servicio-card">⚽ Deportiva</div>
-        <div class="servicio-card">🧠 Neurológica</div>
-        <div class="servicio-card">🫁 Respiratoria</div>
-    </div>
-
-    <!-- 8. Formas de pago -->
-    <h2 class="section-title fade-scroll">💳 Aceptamos</h2>
-    <div class="fade-scroll"><span class="btn-pago">💵 Efectivo</span> <span class="btn-pago">💳 Tarjeta</span> <span class="btn-pago">📲 Transferencia</span> <span class="btn-pago">Mercado Pago</span></div>
-
-    <!-- 9. Blog consejos -->
-    <h2 class="section-title fade-scroll">📖 Consejos de salud</h2>
-    <div class="blog-grid fade-scroll">
-        <div class="blog-card">🧘 5 ejercicios para evitar dolor lumbar<br><small>Mantén tu columna activa.</small></div>
-        <div class="blog-card">🏃 Prevención de lesiones en corredores<br><small>Estiramientos dinámicos.</small></div>
-    </div>
-
-    <!-- 10. Calendario visual + 11. Confirmación por correo (mailto simulada) + 12 duración y 13 modalidad ya están arriba + 14 cupón -->
-    <h2 class="section-title fade-scroll">📆 Calendario visual (selecciona día)</h2>
-    <div class="calendar-mini fade-scroll" id="visualCalendar"></div>
-
-    <!-- 16 contador sesiones restantes integrado con localStorage -->
-    <div id="contadorSesiones" style="background:#cbe2d8; padding: 1rem; border-radius: 1rem; margin: 1rem 0;"></div>
-    
-    <!-- 18 redes sociales footer -->
-    <div class="footer-note" style="margin-top:2rem;">
-        📱 Síguenos: 
-        <a href="#">Instagram</a> | <a href="#">Facebook</a> | <a href="#">TikTok</a> | 
-        <span>📧 contacto@laloygera.com</span>
-        <br>© Lalo y Gera Fisioterapia
-    </div>
-</div>
-
-<!-- Botón WhatsApp flotante (punto 4) -->
-<a href="https://wa.me/521234567890?text=Hola%2C%20quiero%20agendar%20una%20cita%20de%20fisioterapia" class="whatsapp-float" target="_blank">
-    <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp" style="width:35px;">
-</a>
+    <script src="script.js"></script>
 </body>
 </html>
